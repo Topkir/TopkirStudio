@@ -49,7 +49,7 @@ const item = {
 const TechStackPage = () => {
   return <div className="min-h-screen grain-bg">
             <ThemeControls />
-            <div className="mx-auto max-w-3xl px-6 pt-10 pb-8 md:pt-16">
+            <div className="mx-auto max-w-4xl px-6 pt-10 pb-8 md:pt-16">
                 <NavPill />
 
                 <motion.div initial={{
