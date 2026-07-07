@@ -93,7 +93,8 @@ const ContactPage = () => {
     );
 };
 
-const inputCls = 'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-white placeholder:text-black outline-none transition-colors focus:border-white/30';
+const inputCls =
+  'w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-black dark:text-white placeholder:text-gray-500 dark:placeholder:text-white/40 outline-none transition-colors focus:border-white/30';
 
 function Field({ label, children }) {
     return (
