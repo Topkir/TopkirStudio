@@ -9,7 +9,7 @@ export function Eyebrow({
 }
 export function NavPill() {
   return <nav className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-1.5 font-mono-ui text-[11px] tracking-[0.15em] uppercase text-white/50 backdrop-blur-sm">
-            <Link to="/" className="rounded-full px-3 py-1.5 text-white/80 hover:bg-white/5 transition-colors flex items-center gap-1.5">
+            <Link to="/" className="rounded-full px-3 py-1.5 text-white/80 hover:bg-white/5 transition-colors flex items-center gap-1.5 whitespace-nowrap">
                 <span className="inline-flex h-4 w-4 items-center justify-center rounded bg-white/10 text-[9px] text-white">T</span>
                 Topkir Studio
             </Link>
