@@ -65,7 +65,7 @@ const AppsPage = () => {
                                 </a>
                                 <a
                                     href={APPSTORE_URL} target="_blank" rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
+                                    className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5 active:scale-[0.98]"
                                 >
                                     App Store'da İndir
                                     <ExternalLink className="h-4 w-4" />
