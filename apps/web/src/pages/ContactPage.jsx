@@ -94,7 +94,7 @@ const ContactPage = () => {
 };
 
 const inputCls =
-  'w-full rounded-xl border border-white/10 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-3 text-white dark:text-white placeholder:text-gray-500 dark:placeholder:text-white/40 caret-white dark:caret-white outline-none transition-colors focus:border-white/30 dark:focus:border-white/30';
+  'w-full rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] px-4 py-3 text-black dark:text-white placeholder:text-gray-500 dark:placeholder:text-white/40 caret-black dark:caret-white outline-none transition-colors focus:border-black/30 dark:focus:border-white/30';
 
 function Field({ label, children }) {
     return (
