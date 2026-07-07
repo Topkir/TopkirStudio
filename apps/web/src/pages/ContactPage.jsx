@@ -94,7 +94,7 @@ const ContactPage = () => {
 };
 
 const inputCls =
-  'w-full rounded-xl border border-black/10 bg-white px-4 py-3 !text-black placeholder:text-gray-500 outline-none';
+  'w-full rounded-xl border border-black/10 bg-black px-4 py-3 !text-white placeholder:text-gray-500 outline-none';
 
 function Field({ label, children }) {
     return (
