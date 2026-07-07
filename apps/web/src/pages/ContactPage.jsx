@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, Loader2, Instagram, Twitter } from 'lucide-react';
-import pocketbaseClient from '@/lib/pocketbaseClient';
 import { Eyebrow, NavPill, SiteFooter } from '@/components/SiteChrome';
 import ThemeControls from '@/components/ThemeControls';
 
