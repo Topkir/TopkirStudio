@@ -37,7 +37,7 @@ const item = {
 const YayinlarPage = () => {
   return <div className="min-h-screen grain-bg">
       <ThemeControls />
-      <div className="mx-auto max-w-3xl px-6 pt-10 pb-8 md:pt-16">
+      <div className="mx-auto max-w-4xl px-6 pt-10 pb-8 md:pt-16">
         <NavPill />
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-14">
