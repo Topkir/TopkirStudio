@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Send, CheckCircle2, Mail, Loader2 } from "lucide-react";
 import { Nav, Footer } from "@/components/site";
-import pocketbaseClient from "@/lib/pocketbaseClient";
 
 const fieldClass =
   "w-full rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-colors focus:border-primary/70 focus:bg-secondary/70";
