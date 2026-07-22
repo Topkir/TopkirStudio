@@ -12,7 +12,7 @@ const features = [
 ];
 
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.tabu.tabulaa';
-const APPSTORE_URL = 'https://www.apple.com/app-store/';
+const APPSTORE_URL = 'https://apps.apple.com/app/id6789824875';
 
 const AppsPage = () => {
     return (
