@@ -61,7 +61,7 @@ export function SocialLinks({ app, lang = 'tr' }) {
           key={s.url} href={s.url} target="_blank" rel="noopener noreferrer"
           className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-1.5 pr-4 text-sm text-white/70 transition-all hover:-translate-y-0.5 hover:border-white/15 hover:text-white"
         >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-black text-white shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55] transition-shadow group-hover:shadow-[3px_3px_0_#25F4EE,-3px_-3px_0_#FE2C55]">
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#000] text-[#fff] shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55] transition-shadow group-hover:shadow-[3px_3px_0_#25F4EE,-3px_-3px_0_#FE2C55]">
             <TikTokLogo className="h-3.5 w-3.5" />
           </span>
           {t(lang).followTikTok} <span className="font-semibold text-white">{s.handle}</span>
@@ -191,8 +191,8 @@ function AnlatsanaScreen() {
       </div>
       <div className="relative mt-auto mb-6 grid grid-cols-3 gap-1.5 text-[10px] font-semibold">
         <span className="rounded-xl border-2 border-[#1A1A1A] bg-white py-2 text-center">Pas</span>
-        <span className="rounded-xl border-2 border-[#1A1A1A] bg-[#E5404B] py-2 text-center text-white">Tabu</span>
-        <span className="rounded-xl border-2 border-[#1A1A1A] bg-emerald-500 py-2 text-center text-white">Doğru</span>
+        <span className="rounded-xl border-2 border-[#1A1A1A] bg-[#E5404B] py-2 text-center text-[#fff]">Tabu</span>
+        <span className="rounded-xl border-2 border-[#1A1A1A] bg-emerald-500 py-2 text-center text-[#fff]">Doğru</span>
       </div>
     </div>
   );
