@@ -139,11 +139,11 @@ export const legalDocs = {
     ],
   },
 
-  'tabula-privacy': {
-    title: 'Tabula Gizlilik Politikası',
+  'anlatsana-privacy': {
+    title: 'Anlatsana Gizlilik Politikası',
     updated: '21 Ekim 2026',
     intro: [
-      'Bu politika, Topkir Studio tarafından geliştirilen Tabula kelime oyununun hangi bilgileri, hangi amaçla işlediğini açıklar. Tabula\'da hesap açmanız gerekmez ve verileriniz satılmaz.',
+      'Bu politika, Topkir Studio tarafından geliştirilen Anlatsana: Tabu Kelime Oyunu uygulamasının hangi bilgileri, hangi amaçla işlediğini açıklar. Anlatsana\'da hesap açmanız gerekmez ve verileriniz satılmaz.',
       `Veri sorumlusu: ${controller}.`,
     ],
     sections: [
@@ -165,7 +165,7 @@ export const legalDocs = {
       },
       {
         heading: 'Çocukların gizliliği',
-        body: ['Tabula 13 yaş altındaki çocuklardan bilerek kişisel veri toplamaz. Böyle bir durumdan haberdar olursanız bize yazın; ilgili verilerin silinmesini sağlarız.'],
+        body: ['Anlatsana 13 yaş altındaki çocuklardan bilerek kişisel veri toplamaz. Böyle bir durumdan haberdar olursanız bize yazın; ilgili verilerin silinmesini sağlarız.'],
       },
       kvkkRights,
       {
@@ -175,21 +175,21 @@ export const legalDocs = {
     ],
   },
 
-  'tabula-terms': {
-    title: 'Tabula Kullanım Şartları',
+  'anlatsana-terms': {
+    title: 'Anlatsana Kullanım Şartları',
     updated: '30 Temmuz 2026',
-    intro: ['Bu Kullanım Şartları ("Şartlar"), Tabula mobil uygulamasını ("Uygulama") kullanırken geçerlidir. Uygulamayı indirerek veya kullanarak bu şartları kabul etmiş olursunuz.'],
+    intro: ['Bu Kullanım Şartları ("Şartlar"), Anlatsana: Tabu Kelime Oyunu mobil uygulamasını ("Uygulama") kullanırken geçerlidir. Uygulamayı indirerek veya kullanarak bu şartları kabul etmiş olursunuz.'],
     sections: [
       {
         heading: 'Hizmet',
-        body: ['Tabula, kullanıcıların kelime tahmin oyunları oynayabildiği eğlence amaçlı bir mobil uygulamadır.'],
+        body: ['Anlatsana, kullanıcıların kelime tahmin oyunları oynayabildiği eğlence amaçlı bir mobil uygulamadır.'],
       },
       {
         heading: 'Premium avantajları',
         body: [{ ul: ['Reklamsız kullanım', 'Premium kelime paketlerine erişim', 'Yeni tema ve logo seçenekleri', 'Gelecekte eklenecek Premium özelliklere erişim'] }],
       },
-      storeSubscriptions('Tabula'),
-      ...commonTermsTail('Tabula'),
+      storeSubscriptions('Anlatsana'),
+      ...commonTermsTail('Anlatsana'),
     ],
   },
 

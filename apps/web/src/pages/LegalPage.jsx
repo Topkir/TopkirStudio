@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Mail } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
 import { AppIcon } from '@/components/AppVisuals';
+import EmailButton from '@/components/EmailButton';
 import { legalDocs } from '@/content/legal';
 import { CONTACT_EMAIL, appPath, getApp } from '@/data/apps';
 import { t, useLang } from '@/i18n';
@@ -75,9 +76,9 @@ const LegalPage = ({ docKey, kind }) => {
                     <section>
                         <h2 id="iletisim">{s.contact}</h2>
                         <p>{s.contactBody}</p>
-                        <a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 !no-underline text-white/80 hover:text-white">
+                        <EmailButton lang={lang} subject={doc.title} className="mt-3 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-white/80 hover:text-white">
                             <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
-                        </a>
+                        </EmailButton>
                     </section>
                 </article>
             </div>

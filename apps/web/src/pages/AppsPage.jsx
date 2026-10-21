@@ -7,7 +7,7 @@ import { AppIcon, PhoneMockup, StatusBadge, Tilt } from '@/components/AppVisuals
 import { apps, appPath } from '@/data/apps';
 
 const AppsPage = () => {
-    usePageMeta('Uygulamalar', 'Topkir Studio tarafından iOS ve Android için geliştirilen uygulamalar: Firuze ve Tabula.', '/uygulamalar');
+    usePageMeta('Uygulamalar', 'Topkir Studio tarafından iOS ve Android için geliştirilen uygulamalar: Firuze ve Anlatsana.', '/uygulamalar');
     return (
         <PageShell aurora>
             <NavPill />

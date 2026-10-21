@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, FileText, Mail, Shield } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
 import { AppIcon, SocialLinks } from '@/components/AppVisuals';
+import EmailButton from '@/components/EmailButton';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CONTACT_EMAIL, appPath, getApp, localize, privacyPath, supportPath, termsPath } from '@/data/apps';
 import { t, useLang } from '@/i18n';
@@ -16,8 +17,6 @@ const SupportPage = () => {
     const s = t(lang);
     usePageMeta(app && s.supportTitle(app.name), app && s.supportLead, app && supportPath(app, lang));
     if (!app) return <NotFoundPage />;
-
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(s.supportSubject(app.name))}`;
 
     return (
         <PageShell width="max-w-4xl">
@@ -48,9 +47,9 @@ const SupportPage = () => {
                             <h2 className="font-display text-2xl font-bold text-white">{s.writeUs}</h2>
                             <p className="mt-2 max-w-md text-sm text-white/55">{s.writeUsHint}</p>
                         </div>
-                        <a href={mailto} className="shine-btn inline-flex max-w-full items-center gap-2 break-all rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
+                        <EmailButton subject={s.supportSubject(app.name)} lang={lang} className="shine-btn inline-flex max-w-full items-center gap-2 break-all rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
                             <Mail className="h-4 w-4" /> {CONTACT_EMAIL}
-                        </a>
+                        </EmailButton>
                     </div>
                     {app.socials?.length > 0 && <div className="mt-6"><SocialLinks app={app} lang={lang} /></div>}
                 </section>

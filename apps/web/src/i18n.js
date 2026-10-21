@@ -33,6 +33,9 @@ const strings = {
     faq: 'Sık sorulan sorular',
     supportSubject: (n) => `${n} destek`,
     studioTagline: 'Bağımsız mobil uygulama stüdyosu.',
+    mailApp: 'E-posta uygulaması',
+    copyAddress: 'Adresi kopyala',
+    copied: 'Kopyalandı',
   },
   en: {
     soon: 'Coming soon',
@@ -63,6 +66,9 @@ const strings = {
     faq: 'Frequently asked questions',
     supportSubject: (n) => `${n} support`,
     studioTagline: 'Independent mobile app studio.',
+    mailApp: 'Mail app',
+    copyAddress: 'Copy address',
+    copied: 'Copied',
   },
 };
 

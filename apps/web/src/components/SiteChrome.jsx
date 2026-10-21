@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ThemeControls from '@/components/ThemeControls';
 import { TikTokLogo } from '@/components/AppVisuals';
+import EmailButton from '@/components/EmailButton';
 import { CONTACT_EMAIL, INSTAGRAM_URL, SITE_URL, apps } from '@/data/apps';
 import { t, useLang } from '@/i18n';
 
@@ -48,7 +49,7 @@ export function SiteFooter() {
                 <div>
                     <div className="font-display text-lg font-bold text-white">Topkir Studio</div>
                     <p className="mt-1 text-sm text-white/40">{t(lang).studioTagline}</p>
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 inline-block text-sm text-white/60 hover:text-white transition-colors">{CONTACT_EMAIL}</a>
+                    <EmailButton lang={lang} className="mt-3 inline-block text-left text-sm text-white/60 hover:text-white transition-colors">{CONTACT_EMAIL}</EmailButton>
                 </div>
                 <div className="grid grid-cols-2 gap-x-10 gap-y-2 font-mono-ui text-[11px] tracking-[0.15em] uppercase text-white/45">
                     <Link to="/uygulamalar" className="hover:text-white/80 transition-colors">Uygulamalar</Link>

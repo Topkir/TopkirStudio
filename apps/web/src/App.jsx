@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Navigate, Route, Routes, BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'next-themes';
 import { MotionConfig } from 'framer-motion';
 import ScrollToTop from './components/ScrollToTop';
@@ -11,6 +11,13 @@ import ContactPage from './pages/ContactPage';
 import SupportPage from './pages/SupportPage';
 import PressPage from './pages/PressPage';
 import NotFoundPage from './pages/NotFoundPage';
+import { apps } from './data/apps';
+
+// Adı değişen uygulamanın eski adreslerini yenisine taşır (/uygulamalar/tabula/... → /uygulamalar/anlatsana/...).
+function RenamedApp({ from, to }) {
+    const { pathname, search, hash } = useLocation();
+    return <Navigate replace to={pathname.replace(`/uygulamalar/${from}`, `/uygulamalar/${to}`) + search + hash} />;
+}
 
 function App() {
     return (
@@ -33,6 +40,9 @@ function App() {
                     <Route path="/gizlilik" element={<LegalPage docKey="site-privacy" />} />
                     <Route path="/cerez-politikasi" element={<LegalPage docKey="cookies" />} />
                     <Route path="/iletisim" element={<ContactPage />} />
+                    {apps.flatMap((a) => (a.formerSlugs ?? []).map((old) => (
+                        <Route key={old} path={`/uygulamalar/${old}/*`} element={<RenamedApp from={old} to={a.slug} />} />
+                    )))}
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Router>

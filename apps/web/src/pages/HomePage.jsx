@@ -16,7 +16,7 @@ const item = {
 };
 
 const headline = ['Uygulama', 'yap,', 'yayınla', 've', 'büyüt.'];
-const marqueeWords = ['Firuze', 'Tabula', 'iOS', 'Android', 'Flutter', 'Widget', 'SwiftUI', 'TikTok', 'Tasarım', 'Indie'];
+const marqueeWords = ['Firuze', 'Anlatsana', 'iOS', 'Android', 'Flutter', 'Widget', 'SwiftUI', 'TikTok', 'Tasarım', 'Indie'];
 
 const card = 'glow-border group relative block h-full overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.04]';
 
@@ -30,9 +30,9 @@ function CardTitle({ children }) {
 }
 
 const HomePage = () => {
-    usePageMeta(null, 'Topkir Studio: Firuze ve Tabula gibi iOS ve Android uygulamaları geliştiren bağımsız mobil uygulama stüdyosu.', '/');
+    usePageMeta(null, 'Topkir Studio: Firuze ve Anlatsana gibi iOS ve Android uygulamaları geliştiren bağımsız mobil uygulama stüdyosu.', '/');
     const firuze = getApp('firuze');
-    const tabula = getApp('tabula');
+    const anlatsana = getApp('anlatsana');
     const tiktok = firuze.socials.find((so) => so.type === 'tiktok');
 
     return (
@@ -67,8 +67,8 @@ const HomePage = () => {
                     initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="relative mx-auto flex h-[460px] w-full max-w-[380px] items-center justify-center sm:h-[500px]"
                 >
-                    <Link to={appPath(tabula)} aria-label="Tabula" className="absolute left-0 top-10 z-0 -rotate-6 float-slower opacity-90">
-                        <Tilt><PhoneMockup app={tabula} className="w-40 sm:w-48" /></Tilt>
+                    <Link to={appPath(anlatsana)} aria-label="Anlatsana" className="absolute left-0 top-10 z-0 -rotate-6 float-slower opacity-90">
+                        <Tilt><PhoneMockup app={anlatsana} className="w-40 sm:w-48" /></Tilt>
                     </Link>
                     <Link to={appPath(firuze)} aria-label="Firuze" className="absolute right-0 top-0 z-10 rotate-3 float-slow">
                         <Tilt><PhoneMockup app={firuze} className="w-48 sm:w-56" /></Tilt>

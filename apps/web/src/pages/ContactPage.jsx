@@ -4,6 +4,7 @@ import { Mail, Copy, Check, Instagram, ArrowUpRight } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
 import { Link } from 'react-router-dom';
 import { TikTokLogo } from '@/components/AppVisuals';
+import EmailButton from '@/components/EmailButton';
 import { CONTACT_EMAIL, INSTAGRAM_URL, apps, supportPath } from '@/data/apps';
 
 const ContactPage = () => {
@@ -16,7 +17,7 @@ const ContactPage = () => {
             setCopied(true);
             setTimeout(() => setCopied(false), 1800);
         } catch {
-            window.location.href = `mailto:${CONTACT_EMAIL}`;
+            // Pano erişimi yoksa adres sayfada seçilebilir hâlde duruyor.
         }
     };
 
@@ -40,9 +41,9 @@ const ContactPage = () => {
                 </div>
                 <div className="mt-6 break-all font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white">{CONTACT_EMAIL}</div>
                 <div className="mt-8 flex flex-wrap gap-3">
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="shine-btn inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
+                    <EmailButton className="shine-btn inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
                         <Mail className="h-4 w-4" /> E-posta yaz
-                    </a>
+                    </EmailButton>
                     <button onClick={copy} className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-white/80 transition-colors hover:border-white/15 hover:text-white">
                         {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
                         {copied ? 'Kopyalandı' : 'Adresi kopyala'}

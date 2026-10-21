@@ -33,7 +33,7 @@ const appRoutes = apps.flatMap((raw) => {
 
 const routes = [
   { path: '/', title: `${brand} — Bağımsız mobil uygulama stüdyosu` },
-  { path: '/uygulamalar', title: `Uygulamalar · ${brand}`, description: 'Topkir Studio tarafından iOS ve Android için geliştirilen uygulamalar: Firuze ve Tabula.' },
+  { path: '/uygulamalar', title: `Uygulamalar · ${brand}`, description: 'Topkir Studio tarafından iOS ve Android için geliştirilen uygulamalar: Firuze ve Anlatsana.' },
   ...appRoutes,
   { path: '/basin', title: `Basın Kiti · ${brand}`, description: 'Topkir Studio uygulamaları için logolar, tanıtım metinleri, renkler ve basın iletişimi.' },
   { path: '/gizlilik', title: `${legalDocs['site-privacy'].title} · ${brand}`, description: legalDocs['site-privacy'].intro[0] },
@@ -79,6 +79,25 @@ for (const r of routes) {
   await writeFile(path.join(dir, 'index.html'), render(r));
 }
 
+// Adı değişen uygulamaların eski adresleri: statik yönlendirme sayfaları.
+const redirectHtml = (to) => `<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><title>Yönlendiriliyor…</title>
+<link rel="canonical" href="${canonical(to)}"><meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=${to}/"><script>location.replace(${JSON.stringify(`${to}/`)} + location.hash);</script>
+</head><body><a href="${to}/">${SITE_URL}${to}</a></body></html>
+`;
+let redirects = 0;
+for (const a of apps) {
+  for (const old of a.formerSlugs ?? []) {
+    for (const r of routes.filter((r) => r.path.startsWith(`/uygulamalar/${a.slug}`))) {
+      const from = r.path.replace(`/uygulamalar/${a.slug}`, `/uygulamalar/${old}`);
+      await mkdir(path.join(dist, from), { recursive: true });
+      await writeFile(path.join(dist, from, 'index.html'), redirectHtml(r.path));
+      redirects += 1;
+    }
+  }
+}
+
 await writeFile(path.join(dist, '404.html'), render({ path: '/', title: `Sayfa bulunamadı · ${brand}` }));
 
 const today = new Date().toISOString().slice(0, 10);
@@ -89,4 +108,4 @@ ${routes.map((r) => `  <url><loc>${canonical(r.path)}</loc><lastmod>${today}</la
 `;
 await writeFile(path.join(dist, 'sitemap.xml'), sitemap);
 
-console.log(`postbuild: ${routes.length} rota, sitemap.xml ve 404.html yazıldı.`);
+console.log(`postbuild: ${routes.length} rota, ${redirects} yönlendirme, sitemap.xml ve 404.html yazıldı.`);

@@ -139,6 +139,9 @@ html.light .group:hover .group-hover\:border-white\/10 { border-color: hsl(240 1
 html.light .text-white\/55 { color: hsl(240 10% 12% / 0.63); }
 html.light .text-white\/90 { color: hsl(240 10% 12% / 0.98); }
 
+html.light .email-menu { background-color: #fff; }
+html.light .email-menu a:hover, html.light .email-menu button:hover { background-color: hsl(240 10% 12% / 0.05); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

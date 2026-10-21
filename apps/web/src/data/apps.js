@@ -87,54 +87,61 @@ export const apps = [
     },
   },
   {
-    slug: 'tabula',
-    name: 'Tabula',
+    slug: 'anlatsana',
+    // Eski adı Tabula; /uygulamalar/tabula/... adresleri buraya yönlenir.
+    formerSlugs: ['tabula'],
+    name: 'Anlatsana',
     subtitle: 'Tabu Kelime Oyunu',
     category: 'Oyun · Kelime',
     status: 'yayinda',
-    tagline: 'Tabu, ama cebinde.',
+    tagline: 'Anlat, ama o kelimeleri söyleme!',
     description:
       'Tek kişilik veya takım modunda oyna. Süre, tabu ve pas haklarını özelleştir, skorlarını takip et.',
     longDescription:
-      'Tabula, klasik tabu kelime oyununu modern ve akıcı bir arayüzle telefonuna getiriyor. Arkadaşlarınla takımlar kur, süreyi ve pas haklarını kendi kurallarına göre ayarla, her turun sonucunu kaydet. İster kalabalık bir parti gecesinde ister ikili bir maçta — Tabula her ortamda hazır.',
-    pressShort: 'Tabula, klasik tabu kelime oyununu takım modu ve özelleştirilebilir kurallarla telefona taşıyan bir parti oyunudur.',
+      'Anlatsana, klasik tabu kelime oyununu modern ve akıcı bir arayüzle telefonuna getiriyor. Arkadaşlarınla takımlar kur, süreyi ve pas haklarını kendi kurallarına göre ayarla, her turun sonucunu kaydet. İster kalabalık bir parti gecesinde ister ikili bir maçta — Anlatsana her ortamda hazır.',
+    pressShort: 'Anlatsana, klasik tabu kelime oyununu takım modu ve özelleştirilebilir kurallarla telefona taşıyan bir parti oyunudur.',
     features: [
-      { icon: 'Users', title: 'Takım modu', text: 'Tek kişilik veya takımlar hâlinde oyna, sırayı Tabula tutsun.' },
+      { icon: 'Users', title: 'Takım modu', text: 'Tek kişilik veya takımlar hâlinde oyna, sırayı Anlatsana tutsun.' },
       { icon: 'Timer', title: 'Kendi kuralların', text: 'Süre, tabu ve pas hakkı ayarlarını dilediğin gibi özelleştir.' },
       { icon: 'History', title: 'Skor geçmişi', text: 'Oyun geçmişini kaydet, kimin kazandığı hiç tartışma olmasın.' },
       { icon: 'Sparkles', title: 'Akıcı arayüz', text: 'Hızlı, sade ve parti ortamında bile kolay kullanılan tasarım.' },
     ],
     highlights: ['Parti oyunu', 'Takım modu', 'Türkçe kelimeler'],
     faq: [
-      { q: 'Takım modunda nasıl oynanır?', a: 'Oyun kurulumunda takımları oluştur, süreyi ve pas/tabu haklarını belirle. Her turda bir oyuncu kartı anlatır, takım arkadaşları tahmin eder; Tabula sırayı ve skoru otomatik tutar.' },
-      { q: 'Reklamları nasıl kaldırabilirim?', a: 'Tabula Premium ile reklamsız oynayabilir, Premium kelime paketlerine ve yeni temalara erişebilirsin.' },
+      { q: 'Takım modunda nasıl oynanır?', a: 'Oyun kurulumunda takımları oluştur, süreyi ve pas/tabu haklarını belirle. Her turda bir oyuncu kartı anlatır, takım arkadaşları tahmin eder; Anlatsana sırayı ve skoru otomatik tutar.' },
+      { q: 'Reklamları nasıl kaldırabilirim?', a: 'Anlatsana Premium ile reklamsız oynayabilir, Premium kelime paketlerine ve yeni temalara erişebilirsin.' },
       { q: 'Premium aboneliğimi nasıl iptal ederim?', a: 'iPhone\'da Ayarlar › Apple Kimliği › Abonelikler; Android\'de Google Play › Profil › Ödemeler ve abonelikler. Uygulamayı silmek aboneliği iptal etmez.' },
       { q: 'Satın alımımı yeni telefonuma nasıl taşırım?', a: 'Aynı mağaza hesabıyla giriş yaptıktan sonra uygulamadaki "Satın Alımları Geri Yükle" seçeneğini kullan.' },
       { q: 'Bir kelimede hata buldum, nasıl bildiririm?', a: 'Kelimeyi ve kartı bize e-posta ile gönder; bir sonraki güncellemede düzeltelim.' },
     ],
     platforms: ['iOS', 'Android'],
     stores: {
-      appStore: 'https://apps.apple.com/app/id6789824875',
+      appStore: 'https://apps.apple.com/tr/app/anlatsana-taboo-word-game/id6789824875',
       googlePlay: 'https://play.google.com/store/apps/details?id=com.tabu.tabulaa',
     },
     socials: [],
-    accent: '#FB923C',
-    accent2: '#F43F5E',
-    surface: '#1A1210',
+    // İkondaki sarı kart, kırmızı kart ve krem zemin.
+    accent: '#F5B82E',
+    accent2: '#E5404B',
+    surface: '#1C160C',
     palette: [
-      { name: 'Turuncu', hex: '#FB923C' },
-      { name: 'Gül', hex: '#F43F5E' },
-      { name: 'Koyu', hex: '#1A1210' },
+      { name: 'Sarı', hex: '#F5B82E' },
+      { name: 'Kırmızı', hex: '#E5404B' },
+      { name: 'Krem', hex: '#FDE6A8' },
+      { name: 'Mürekkep', hex: '#1A1A1A' },
     ],
-    icon: null,
-    iconLarge: null,
-    mockup: 'tabula',
+    icon: '/apps/anlatsana/icon.png',
+    iconLarge: '/apps/anlatsana/icon-1024.png',
+    mockup: 'anlatsana',
     screenshots: [],
     updated: '30 Temmuz 2026',
   },
 ];
 
 export const getApp = (slug) => apps.find((a) => a.slug === slug);
+
+// Adı değişen uygulamanın eski kısa adı → güncel uygulama.
+export const getRenamedApp = (slug) => apps.find((a) => a.formerSlugs?.includes(slug));
 
 // Uygulamanın verilen dildeki görünümü; çevirisi olmayan alanlar Türkçe kalır.
 export const localize = (app, lang) => (lang === 'en' && app.en ? { ...app, ...app.en, lang } : { ...app, lang: 'tr' });

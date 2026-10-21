@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import { Check, Copy, Download, ExternalLink, Mail } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
 import { AppIcon, PhoneMockup, SocialLinks, StatusBadge, StoreButtons } from '@/components/AppVisuals';
-import { CONTACT_EMAIL, appPath, apps } from '@/data/apps';
+import EmailButton from '@/components/EmailButton';
+import { appPath, apps } from '@/data/apps';
 
 function useCopy() {
     const [copied, setCopied] = useState(null);
@@ -50,9 +51,9 @@ const PressPage = () => {
                     Haber, inceleme veya içerik hazırlıyorsan ihtiyacın olan logo, metin ve renkler burada. Ek görsel, röportaj ya da erken erişim için yazman yeterli.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                    <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Basın')}`} className="shine-btn inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
+                    <EmailButton subject="Basın" className="shine-btn inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5">
                         <Mail className="h-4 w-4" /> Basın iletişimi
-                    </a>
+                    </EmailButton>
                 </div>
             </div>
 

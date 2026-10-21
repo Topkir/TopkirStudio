@@ -170,32 +170,35 @@ function FiruzeScreen() {
   );
 }
 
-function TabulaScreen() {
+function AnlatsanaScreen() {
   return (
-    <div className="absolute inset-0 flex flex-col bg-gradient-to-b from-[#2a1512] via-[#1A1210] to-[#120c0b] px-4 pt-10 text-white">
-      <div className="absolute -top-10 right-0 h-40 w-40 rounded-full bg-[#FB923C]/30 blur-3xl" />
-      <div className="relative flex items-center justify-between text-[10px]">
-        <span className="rounded-full bg-white/10 px-2 py-1 whitespace-nowrap">A · 12</span>
-        <span className="font-display text-xl font-bold text-[#FB923C]">0:42</span>
-        <span className="rounded-full bg-white/10 px-2 py-1 whitespace-nowrap">9 · B</span>
+    <div className="absolute inset-0 flex flex-col bg-gradient-to-b from-[#FDE6A8] to-[#F8D27A] px-4 pt-10 text-[#1A1A1A]">
+      <div className="relative flex items-center justify-between text-[10px] font-semibold">
+        <span className="rounded-full bg-white/70 px-2 py-1 whitespace-nowrap">A · 12</span>
+        <span className="font-display text-xl font-bold text-[#E5404B]">0:42</span>
+        <span className="rounded-full bg-white/70 px-2 py-1 whitespace-nowrap">9 · B</span>
       </div>
-      <div className="relative mt-5 rounded-2xl bg-white p-4 text-center text-black shadow-xl">
-        <div className="font-display text-2xl font-bold tracking-tight">KAHVE</div>
-        <div className="mx-auto my-3 h-px w-2/3 bg-black/10" />
-        {['Fincan', 'Türk', 'Köpük', 'Çay', 'Sabah'].map((w) => (
-          <div key={w} className="py-0.5 text-[12px] font-medium text-rose-500">{w}</div>
-        ))}
+      <div className="relative mt-5">
+        <div className="absolute inset-0 translate-x-2 rotate-3 rounded-2xl border-2 border-[#1A1A1A] bg-[#E5404B]" />
+        <div className="relative rounded-2xl border-2 border-[#1A1A1A] bg-[#F5B82E] p-4 text-center">
+          <div className="rounded-lg bg-[#1A1A1A] py-1.5 font-display text-xl font-bold tracking-tight text-[#FDE6A8]">KAHVE</div>
+          <div className="mt-3 space-y-0.5">
+            {['Fincan', 'Türk', 'Köpük', 'Çay', 'Sabah'].map((w) => (
+              <div key={w} className="text-[12px] font-semibold text-[#1A1A1A]/80">{w}</div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="relative mt-auto mb-6 grid grid-cols-3 gap-1.5 text-[10px] font-semibold">
-        <span className="rounded-xl bg-white/10 py-2.5 text-center">Pas</span>
-        <span className="rounded-xl bg-rose-500 py-2.5 text-center">Tabu</span>
-        <span className="rounded-xl bg-emerald-500 py-2.5 text-center">Doğru</span>
+        <span className="rounded-xl border-2 border-[#1A1A1A] bg-white py-2 text-center">Pas</span>
+        <span className="rounded-xl border-2 border-[#1A1A1A] bg-[#E5404B] py-2 text-center text-white">Tabu</span>
+        <span className="rounded-xl border-2 border-[#1A1A1A] bg-emerald-500 py-2 text-center text-white">Doğru</span>
       </div>
     </div>
   );
 }
 
-const screens = { firuze: FiruzeScreen, tabula: TabulaScreen };
+const screens = { firuze: FiruzeScreen, anlatsana: AnlatsanaScreen };
 
 export function PhoneMockup({ app, className = 'w-56' }) {
   const Screen = screens[app.mockup];
