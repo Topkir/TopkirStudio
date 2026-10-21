@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow, NavPill, SiteFooter } from '@/components/SiteChrome';
-import ThemeControls from '@/components/ThemeControls';
-const updates = [{
+import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
+export const updates = [{
   ep: 'GÜNCELLEME 0',
   date: '24 KAS 2025',
   title: 'Tabula Google Play\'de yayınlandı.',
@@ -47,9 +46,8 @@ const item = {
   }
 };
 const TechStackPage = () => {
-  return <div className="min-h-screen grain-bg">
-            <ThemeControls />
-            <div className="mx-auto max-w-4xl px-6 pt-10 pb-8 md:pt-16">
+  usePageMeta('Güncellemeler', 'Topkir Studio uygulamalarına gelen yeni özellikler ve iyileştirmeler.', '/techstack');
+  return <PageShell width="max-w-4xl">
                 <NavPill />
 
                 <motion.div initial={{
@@ -72,7 +70,7 @@ const TechStackPage = () => {
                             <div className="absolute left-0 top-0 h-full w-[12%] rounded-full bg-emerald-400" />
                             <div className="absolute left-[12%] top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 ring-4 ring-emerald-400/20" />
                         </div>
-                        <span className="font-mono-ui text-xs tracking-[0.15em] text-white/50">4 GÜNCELLEME</span>
+                        <span className="font-mono-ui text-xs tracking-[0.15em] text-white/50">{updates.length} GÜNCELLEME</span>
                     </div>
                 </motion.div>
 
@@ -92,8 +90,6 @@ const TechStackPage = () => {
                         </motion.div>)}
                 </motion.div>
 
-                <SiteFooter />
-            </div>
-        </div>;
+        </PageShell>;
 };
 export default TechStackPage;

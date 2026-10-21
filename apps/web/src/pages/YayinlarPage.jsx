@@ -1,9 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Eyebrow, NavPill, SiteFooter } from '@/components/SiteChrome';
-import ThemeControls from '@/components/ThemeControls';
+import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
 
-const releases = [{
+export const releases = [{
   ep: 'YAYIN 0',
   date: '18 KAS 2025',
   title: 'Tabula fikri ve ilk prototip.',
@@ -23,6 +22,16 @@ const releases = [{
   date: '02 MAR 2026',
   title: 'App Store sürümü için hazırlıklar başladı.',
   chips: ['🎮 TABULA', '🍎 APP STORE']
+}, {
+  ep: 'YAYIN 4',
+  date: '29 EYL 2026',
+  title: 'Firuze: namaz vakti ve zikir uygulamasının ilk sürümü yazıldı.',
+  chips: ['🕌 FİRUZE', '💡 FİKİR']
+}, {
+  ep: 'YAYIN 5',
+  date: '19 EKİ 2026',
+  title: 'Firuze TestFlight ve Google Play dahili teste hazırlanıyor.',
+  chips: ['🕌 FİRUZE', '🧪 TEST']
 }];
 
 const container = {
@@ -35,9 +44,8 @@ const item = {
 };
 
 const YayinlarPage = () => {
-  return <div className="min-h-screen grain-bg">
-      <ThemeControls />
-      <div className="mx-auto max-w-4xl px-6 pt-10 pb-8 md:pt-16">
+  usePageMeta('Sıfırdan Yayına', 'Bir fikri mağazada yayınlanan ürüne dönüştürme yolculuğu.', '/yayinlar');
+  return <PageShell width="max-w-4xl">
         <NavPill />
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-14">
@@ -49,10 +57,10 @@ const YayinlarPage = () => {
 
           <div className="mt-10 flex items-center gap-4">
             <div className="relative h-1.5 flex-1 rounded-full bg-white/10">
-              <div className="absolute left-0 top-0 h-full w-[75%] rounded-full bg-emerald-400" />
-              <div className="absolute left-[75%] top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 ring-4 ring-emerald-400/20" />
+              <div className="absolute left-0 top-0 h-full w-[85%] rounded-full bg-emerald-400" />
+              <div className="absolute left-[85%] top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 ring-4 ring-emerald-400/20" />
             </div>
-            <span className="font-mono-ui text-xs tracking-[0.15em] text-white/50">4 YAYIN</span>
+            <span className="font-mono-ui text-xs tracking-[0.15em] text-white/50">{releases.length} YAYIN</span>
           </div>
         </motion.div>
 
@@ -72,8 +80,6 @@ const YayinlarPage = () => {
             </motion.div>)}
         </motion.div>
 
-        <SiteFooter />
-      </div>
-    </div>;
+    </PageShell>;
 };
 export default YayinlarPage;
