@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Layers, Rocket, MessageCircle, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Newspaper, MessageCircle, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
-import { AppIcon, PhoneMockup, StatusBadge, Tilt } from '@/components/AppVisuals';
+import { AppIcon, PhoneMockup, StatusBadge, TikTokLogo, Tilt } from '@/components/AppVisuals';
 import { apps, appPath, getApp } from '@/data/apps';
-import { updates } from '@/pages/TechStackPage';
-import { releases } from '@/pages/YayinlarPage';
 
 const container = {
     hidden: {},
@@ -18,7 +16,7 @@ const item = {
 };
 
 const headline = ['Uygulama', 'yap,', 'yayınla', 've', 'büyüt.'];
-const marqueeWords = ['Firuze', 'Tabula', 'iOS', 'Android', 'Flutter', 'Widget', 'SwiftUI', 'Tasarım', 'Yayın', 'Indie'];
+const marqueeWords = ['Firuze', 'Tabula', 'iOS', 'Android', 'Flutter', 'Widget', 'SwiftUI', 'TikTok', 'Tasarım', 'Indie'];
 
 const card = 'glow-border group relative block h-full overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.02] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.04]';
 
@@ -35,8 +33,7 @@ const HomePage = () => {
     usePageMeta(null, 'Topkir Studio: Firuze ve Tabula gibi iOS ve Android uygulamaları geliştiren bağımsız mobil uygulama stüdyosu.', '/');
     const firuze = getApp('firuze');
     const tabula = getApp('tabula');
-    const lastUpdate = updates[updates.length - 1];
-    const progress = Math.round((releases.length / (releases.length + 1)) * 100);
+    const tiktok = firuze.socials.find((so) => so.type === 'tiktok');
 
     return (
         <PageShell aurora>
@@ -113,22 +110,20 @@ const HomePage = () => {
                 </motion.div>
 
                 <motion.div variants={item} className="md:col-span-2">
-                    <Link to="/techstack" className={card} style={{ '--glow': '#818CF8' }}>
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-400/10 text-indigo-400"><Layers className="h-5 w-5" strokeWidth={1.75} /></span>
-                        <div className="mt-5 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/35">ÖĞREN · {updates.length} güncelleme</div>
-                        <CardTitle>Güncellemeler</CardTitle>
-                        <p className="mt-2 text-sm text-white/45">Son: {lastUpdate.title}</p>
-                    </Link>
+                    <a href={tiktok.url} target="_blank" rel="noopener noreferrer" className={card} style={{ '--glow': '#FE2C55' }}>
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black text-white shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55]"><TikTokLogo className="h-5 w-5" /></span>
+                        <div className="mt-5 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/35">TAKİP ET · <span lang="en">TikTok</span></div>
+                        <CardTitle>{tiktok.handle}</CardTitle>
+                        <p className="mt-2 text-sm text-white/45">Firuze'nin hikâyesi, yeni özellikler ve kısa videolar.</p>
+                    </a>
                 </motion.div>
 
                 <motion.div variants={item} className="md:col-span-2">
-                    <Link to="/yayinlar" className={card} style={{ '--glow': '#34D399' }}>
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-400"><Rocket className="h-5 w-5" strokeWidth={1.75} /></span>
-                        <div className="mt-5 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/35">TAKİP ET · yolculuk</div>
-                        <CardTitle>Sıfırdan Yayına</CardTitle>
-                        <div className="mt-4 h-1.5 rounded-full bg-white/10">
-                            <motion.div initial={{ width: 0 }} whileInView={{ width: `${progress}%` }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300" />
-                        </div>
+                    <Link to="/basin" className={card} style={{ '--glow': '#818CF8' }}>
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-400/10 text-indigo-400"><Newspaper className="h-5 w-5" strokeWidth={1.75} /></span>
+                        <div className="mt-5 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/35">PAYLAŞ · basın</div>
+                        <CardTitle>Basın kiti</CardTitle>
+                        <p className="mt-2 text-sm text-white/45">Logolar, tanıtım metinleri ve renkler.</p>
                     </Link>
                 </motion.div>
 

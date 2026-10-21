@@ -76,7 +76,7 @@ export const legalDocs = {
         heading: 'Cihazınızda işlenen bilgiler',
         body: [
           '**Konum.** İzin verirseniz, cihazınızın yaklaşık konumu namaz vakitlerini hesaplamak ve bulunduğunuz şehri belirlemek için kullanılır. Hesaplama tamamen cihazda yapılır; konumunuz hiçbir sunucuya gönderilmez. Konum izni vermeden şehrinizi listeden elle seçebilirsiniz. İzni istediğiniz zaman cihaz ayarlarından kaldırabilirsiniz.',
-          '**Tercihler ve ilerleme.** Seçtiğiniz şehir, hesaplama yöntemi, bildirim ayarları, zikir sayaçları, kendi eklediğiniz zikirler, Kur\'an okuma ilerlemesi ve favorileriniz cihazınızın yerel depolamasında saklanır. Uygulamayı sildiğinizde bu veriler de silinir.',
+          '**Tercihler ve ilerleme.** Seçtiğiniz şehir, bildirim ayarları, zikir sayaçları, kendi eklediğiniz zikirler, Kur\'an okuma ilerlemesi ve favorileriniz cihazınızın yerel depolamasında saklanır. Uygulamayı sildiğinizde bu veriler de silinir.',
           '**Bildirimler.** Ezan ve hatırlatma bildirimleri cihazınızda yerel olarak planlanır; bildirim için bir sunucu kullanılmaz.',
           '**Widget\'lar.** Ana ekran widget\'larının gösterdiği vakit ve zikir bilgileri, uygulama ile widget arasında cihaz içi paylaşılan bir alanda (iOS\'ta App Group) tutulur.',
           '**Odaklan (yalnızca iOS).** Bu özellik Apple\'ın Ekran Süresi (Screen Time / Family Controls) altyapısını kullanır. Kilitlemek için seçtiğiniz uygulamalar Apple tarafından şifrelenmiş belirteçler hâlinde verilir; Firuze hangi uygulamaları kullandığınızı göremez ve bu bilgi cihazınızdan çıkmaz.',
@@ -130,7 +130,7 @@ export const legalDocs = {
       {
         heading: 'Namaz vakitleri hakkında önemli not',
         body: [
-          'Vakitler, seçtiğiniz konum ve hesaplama yöntemine göre astronomik formüllerle cihazınızda hesaplanır. Diyanet İşleri Başkanlığı\'nın yayımladığı takvimle veya yerel camilerin uygulamasıyla birkaç dakikalık farklar oluşabilir. İhtiyat gerektiren durumlarda (ör. imsak ve iftar) resmî takvimi esas almanızı öneririz.',
+          'Vakitler, konumunuza göre Diyanet yöntemi esas alınarak astronomik formüllerle cihazınızda hesaplanır. Diyanet İşleri Başkanlığı\'nın yayımladığı takvimle veya yerel camilerin uygulamasıyla birkaç dakikalık farklar oluşabilir. İhtiyat gerektiren durumlarda (ör. imsak ve iftar) resmî takvimi esas almanızı öneririz.',
           'Uygulamadaki içerikler genel bilgilendirme amaçlıdır ve dinî fetva niteliği taşımaz. Kaynaklar uygulamanın Ayarlar › Kaynaklar bölümünde listelenir.',
         ],
       },
@@ -240,4 +240,122 @@ export const legalDocs = {
       },
     ],
   },
+};
+
+// ---- English (Firuze) ----
+
+const rightsEn = {
+  heading: 'Your rights (GDPR and KVKK)',
+  body: [
+    'Under the EU General Data Protection Regulation (GDPR) and Turkey\'s Personal Data Protection Law No. 6698 (KVKK), you have the right to know whether your data is processed, to request information, to request correction or deletion, to object to processing, and to seek compensation for damages.',
+    'You can send your request to the email address below; we respond within 30 days at the latest. You also have the right to lodge a complaint with your local data protection authority (in Turkey, the Personal Data Protection Authority).',
+  ],
+};
+
+const subscriptionsEn = {
+  heading: 'Premium subscription',
+  body: [
+    'Firuze Premium is an optional subscription purchased inside the app. Payment is charged to your Apple App Store or Google Play account when you confirm the purchase.',
+    { ul: [
+      'The subscription renews automatically for the same period and price unless cancelled at least 24 hours before the end of the current period.',
+      'Your account is charged for renewal within the 24 hours before the current period ends.',
+      'You can manage and cancel your subscription in your App Store or Google Play account settings. Deleting the app does not cancel the subscription.',
+      'If a free trial is offered and you do not cancel before it ends, the paid period begins; any unused part of a trial is forfeited when you purchase.',
+      'You can restore purchases with the same store account using "Restore purchases".',
+      'Refunds are subject to Apple\'s or Google\'s refund policies.',
+    ] },
+  ],
+};
+
+legalDocs['firuze-privacy-en'] = {
+  title: 'Firuze Privacy Policy',
+  updated: 'October 21, 2026',
+  intro: [
+    'Firuze is designed not to collect your personal data. You don\'t need an account, no advertising or tracking tools are used, and your data is never sold. This policy explains how the app uses information on your device and when it communicates with third-party services.',
+    'Data controller: Topkir Studio (Ahmet Topkir).',
+  ],
+  sections: [
+    {
+      heading: 'Summary',
+      body: [{ ul: [
+        'No account, no sign-up, no ads, no tracking.',
+        'Your location and preferences stay on your device; they are never sent to our servers (we don\'t have any).',
+        'The app only contacts RevenueCat for Premium purchases and Google Fonts to download fonts.',
+      ] }],
+    },
+    {
+      heading: 'Information processed on your device',
+      body: [
+        '**Location.** If you grant permission, your device\'s approximate location is used to calculate prayer times and determine your city. The calculation happens entirely on your device; your location is never sent to any server. You can pick your city from a list without granting location permission, and you can revoke the permission at any time in your device settings.',
+        '**Preferences and progress.** Your selected city, notification settings, dhikr counts, custom dhikr, Quran reading progress and favorites are stored in your device\'s local storage and are deleted when you delete the app.',
+        '**Notifications.** Adhan and reminder notifications are scheduled locally on your device; no server is used.',
+        '**Widgets.** The prayer time and dhikr information shown by home screen widgets is kept in an on-device area shared between the app and its widgets (an App Group on iOS).',
+        '**Focus (iOS only).** This feature uses Apple\'s Screen Time (Family Controls) framework. The apps you choose to lock are provided by Apple as encrypted tokens; Firuze cannot see which apps you use and this information never leaves your device.',
+      ],
+    },
+    {
+      heading: 'Third-party services',
+      body: [
+        '**RevenueCat (subscription management).** RevenueCat, Inc. is used to validate Premium purchases and check your subscription status. RevenueCat processes a randomly generated anonymous user ID, purchase records (product, date, price, store transaction ID), device/OS information, app version and IP address for country detection. Your name and email are not shared. Details: revenuecat.com/privacy.',
+        '**Apple App Store / Google Play.** Payments are processed by the stores; we never see your card details. The stores\' own privacy policies apply.',
+        '**Google Fonts.** Some fonts are downloaded from Google\'s servers on first use and cached on your device. During this request your IP address is technically transmitted to Google; no other information is sent.',
+      ],
+    },
+    {
+      heading: 'International transfers',
+      body: ['RevenueCat and Google servers are located outside Turkey (mainly in the US and EU). The limited technical data sent to these services is transferred only as necessary to provide the service and on the basis of contractual safeguards.'],
+    },
+    {
+      heading: 'Children\'s privacy',
+      body: ['Firuze is suitable for all ages and does not knowingly collect personal data from children. Premium purchases are subject to the stores\' parental controls.'],
+    },
+    {
+      heading: 'Deleting your data',
+      body: ['Because Firuze has no accounts, there is no server record to delete. Deleting the app removes all data from your device. If you want the anonymous purchase record at RevenueCat deleted, contact us by email.'],
+    },
+    rightsEn,
+    {
+      heading: 'Changes',
+      body: ['If this policy is updated, the new version will be published on this page and the date above will change. Material changes will be announced in the app.'],
+    },
+  ],
+};
+
+legalDocs['firuze-terms-en'] = {
+  title: 'Firuze Terms of Use',
+  updated: 'October 21, 2026',
+  intro: ['These Terms of Use apply to the Firuze mobile app developed by Topkir Studio. By downloading or using the app, you agree to these terms.'],
+  sections: [
+    {
+      heading: 'The service',
+      body: ['Firuze offers prayer times, adhan notifications, a dhikr counter, Quran reading, home screen widgets and focus tools. Core features and widgets are free; some additional features require a Premium subscription.'],
+    },
+    {
+      heading: 'Important note about prayer times',
+      body: [
+        'Prayer times are calculated on your device with astronomical formulas based on the Diyanet method and your location. Differences of a few minutes from official calendars or local mosques may occur. For times that require caution (e.g. suhoor and iftar), we recommend following your official local calendar.',
+        'Content in the app is for general information and does not constitute a religious ruling (fatwa). Sources are listed under Settings › Sources in the app.',
+      ],
+    },
+    subscriptionsEn,
+    {
+      heading: 'Acceptable use',
+      body: ['You agree to use Firuze lawfully and not to copy, reverse engineer, distribute modified versions of, or misuse the app.'],
+    },
+    {
+      heading: 'Intellectual property',
+      body: ['The software, design, graphics and logos in the app belong to Topkir Studio and are protected by copyright. Third-party content is used under its own license; sources are credited in the app.'],
+    },
+    {
+      heading: 'Limitation of liability',
+      body: ['The app is provided "as is". We do not guarantee that it will be uninterrupted or error-free. To the extent permitted by applicable law, we are not liable for indirect damages arising from the use of the app.'],
+    },
+    {
+      heading: 'Changes and governing law',
+      body: [
+        'These terms may be updated from time to time; the current version is always published on this page. Material changes will be announced in the app.',
+        'These terms are governed by the laws of the Republic of Turkey. Mandatory consumer protection rules of your country of residence remain unaffected.',
+      ],
+    },
+  ],
 };

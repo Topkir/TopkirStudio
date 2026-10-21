@@ -5,25 +5,39 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE_URL, apps, appPath, privacyPath, termsPath } from '../src/data/apps.js';
+import { SITE_URL, apps, appPath, localize, privacyPath, supportPath, termsPath } from '../src/data/apps.js';
 import { legalDocs } from '../src/content/legal.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.resolve(here, '../../../dist/apps/web');
 const brand = 'Topkir Studio';
 
+// Uygulama başına sayfalar; `en` çevirisi olanlar için İngilizce eşleri de.
+// `alt`, karşı dildeki sayfanın yolu (hreflang için).
+const appRoutes = apps.flatMap((raw) => {
+  const langs = raw.en ? ['tr', 'en'] : ['tr'];
+  return langs.flatMap((lang) => {
+    const a = localize(raw, lang);
+    const other = lang === 'tr' ? 'en' : 'tr';
+    const alt = (fn) => (raw.en ? fn(raw, other) : null);
+    const legal = (kind) => legalDocs[`${a.slug}-${kind}${lang === 'en' ? '-en' : ''}`];
+    const support = lang === 'en' ? `${a.name} Support` : `${a.name} Destek`;
+    return [
+      { path: appPath(a, lang), lang, alt: alt(appPath), title: `${a.name} — ${a.subtitle} · ${brand}`, description: a.description, image: a.iconLarge },
+      { path: privacyPath(a, lang), lang, alt: alt(privacyPath), title: `${legal('privacy').title} · ${brand}`, description: legal('privacy').intro[0] },
+      { path: termsPath(a, lang), lang, alt: alt(termsPath), title: `${legal('terms').title} · ${brand}`, description: legal('terms').intro[0] },
+      { path: supportPath(a, lang), lang, alt: alt(supportPath), title: `${support} · ${brand}`, description: a.faq.map((f) => f.q).slice(0, 3).join(' ') },
+    ];
+  });
+});
+
 const routes = [
   { path: '/', title: `${brand} — Bağımsız mobil uygulama stüdyosu` },
   { path: '/uygulamalar', title: `Uygulamalar · ${brand}`, description: 'Topkir Studio tarafından iOS ve Android için geliştirilen uygulamalar: Firuze ve Tabula.' },
-  ...apps.flatMap((a) => [
-    { path: appPath(a), title: `${a.name} — ${a.subtitle} · ${brand}`, description: a.description, image: a.icon },
-    { path: privacyPath(a), title: `${legalDocs[`${a.slug}-privacy`].title} · ${brand}`, description: legalDocs[`${a.slug}-privacy`].intro[0] },
-    { path: termsPath(a), title: `${legalDocs[`${a.slug}-terms`].title} · ${brand}`, description: legalDocs[`${a.slug}-terms`].intro[0] },
-  ]),
+  ...appRoutes,
+  { path: '/basin', title: `Basın Kiti · ${brand}`, description: 'Topkir Studio uygulamaları için logolar, tanıtım metinleri, renkler ve basın iletişimi.' },
   { path: '/gizlilik', title: `${legalDocs['site-privacy'].title} · ${brand}`, description: legalDocs['site-privacy'].intro[0] },
   { path: '/cerez-politikasi', title: `${legalDocs.cookies.title} · ${brand}`, description: legalDocs.cookies.intro[0] },
-  { path: '/techstack', title: `Güncellemeler · ${brand}`, description: 'Topkir Studio uygulamalarına gelen yeni özellikler ve iyileştirmeler.' },
-  { path: '/yayinlar', title: `Sıfırdan Yayına · ${brand}`, description: 'Bir fikri mağazada yayınlanan ürüne dönüştürme yolculuğu.' },
   { path: '/iletisim', title: `İletişim · ${brand}`, description: 'Proje, iş birliği, destek ve geri bildirim için Topkir Studio ile iletişime geçin.' },
 ];
 
@@ -34,7 +48,7 @@ const clip = (s) => (s.length > 160 ? `${s.slice(0, 157).trimEnd()}…` : s);
 
 const template = await readFile(path.join(dist, 'index.html'), 'utf8');
 
-function render({ path: p, title, description, image }) {
+function render({ path: p, title, description, image, lang = 'tr', alt }) {
   const url = canonical(p);
   let html = template
     .replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
@@ -46,6 +60,14 @@ function render({ path: p, title, description, image }) {
     html = html
       .replace(/(<meta name="description" content=")[^"]*/, `$1${d}`)
       .replace(/(<meta property="og:description" content=")[^"]*/, `$1${d}`);
+  }
+  if (lang === 'en') {
+    html = html.replace('<html lang="tr"', '<html lang="en"').replace('content="tr_TR"', 'content="en_US"');
+  }
+  if (alt) {
+    const tr = lang === 'tr' ? p : alt;
+    const en = lang === 'en' ? p : alt;
+    html = html.replace('</head>', `\t<link rel="alternate" hreflang="tr" href="${canonical(tr)}" />\n\t\t<link rel="alternate" hreflang="en" href="${canonical(en)}" />\n\t\t<link rel="alternate" hreflang="x-default" href="${canonical(tr)}" />\n\t</head>`);
   }
   if (image) html = html.replace('</head>', `\t<meta property="og:image" content="${SITE_URL}${image}" />\n\t</head>`);
   return html;

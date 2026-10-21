@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   BellRing, BookOpen, CircleDot, Clock, History, LayoutGrid, ShieldCheck, Sparkles, Timer, Users,
 } from 'lucide-react';
+import { t } from '@/i18n';
 
 export const iconMap = { BellRing, BookOpen, CircleDot, Clock, History, LayoutGrid, ShieldCheck, Sparkles, Timer, Users };
 
@@ -21,12 +22,12 @@ export function AppIcon({ app, className = 'h-14 w-14' }) {
   );
 }
 
-export function StatusBadge({ app }) {
+export function StatusBadge({ app, lang = 'tr' }) {
   const live = app.status === 'yayinda';
   return (
     <span className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 font-mono-ui text-[10px] tracking-[0.18em] uppercase ${live ? 'border-emerald-400/30 text-emerald-300' : 'border-amber-300/30 text-amber-200'}`}>
       <span className={`h-1.5 w-1.5 rounded-full pulse-dot ${live ? 'bg-emerald-400 text-emerald-400' : 'bg-amber-300 text-amber-300'}`} />
-      {live ? 'Yayında' : 'Yakında'}
+      {live ? t(lang).live : t(lang).soon}
     </span>
   );
 }
@@ -45,14 +46,39 @@ const PlayLogo = (p) => (
   </svg>
 );
 
-function StoreButton({ href, logo: Logo, top, bottom }) {
+export const TikTokLogo = (p) => (
+  <svg viewBox="0 0 448 512" fill="currentColor" aria-hidden="true" {...p}>
+    <path d="M448 209.9a210.1 210.1 0 0 1-122.8-39.3v178.8A162.6 162.6 0 1 1 185 188.3v89.9a74.6 74.6 0 1 0 52.2 71.2V0h88a121 121 0 0 0 1.9 22.2A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+  </svg>
+);
+
+export function SocialLinks({ app, lang = 'tr' }) {
+  if (!app.socials?.length) return null;
+  return (
+    <div className="flex flex-wrap gap-2">
+      {app.socials.map((s) => (
+        <a
+          key={s.url} href={s.url} target="_blank" rel="noopener noreferrer"
+          className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-1.5 pr-4 text-sm text-white/70 transition-all hover:-translate-y-0.5 hover:border-white/15 hover:text-white"
+        >
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-black text-white shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55] transition-shadow group-hover:shadow-[3px_3px_0_#25F4EE,-3px_-3px_0_#FE2C55]">
+            <TikTokLogo className="h-3.5 w-3.5" />
+          </span>
+          {t(lang).followTikTok} <span className="font-semibold text-white">{s.handle}</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function StoreButton({ href, logo: Logo, top, bottom, soon }) {
   const base = 'inline-flex min-w-[168px] items-center gap-3 rounded-2xl px-4 py-2.5 transition-all';
   if (!href) {
     return (
-      <span className={`${base} cursor-not-allowed border border-dashed border-white/15 bg-white/[0.02] text-white/45`} aria-disabled="true" title="Yakında">
+      <span className={`${base} cursor-not-allowed border border-dashed border-white/15 bg-white/[0.02] text-white/45`} aria-disabled="true" title={soon}>
         <Logo className="h-6 w-6 opacity-50 grayscale" />
         <span className="leading-tight">
-          <span className="block font-mono-ui text-[9px] tracking-[0.2em] uppercase">Yakında</span>
+          <span className="block font-mono-ui text-[9px] tracking-[0.2em] uppercase">{soon}</span>
           <span className="block text-sm font-semibold">{bottom}</span>
         </span>
       </span>
@@ -69,11 +95,12 @@ function StoreButton({ href, logo: Logo, top, bottom }) {
   );
 }
 
-export function StoreButtons({ app }) {
+export function StoreButtons({ app, lang = 'tr' }) {
+  const s = t(lang);
   return (
     <div className="flex flex-wrap gap-3">
-      <StoreButton href={app.stores.appStore} logo={AppleLogo} top="İndir" bottom="App Store" />
-      <StoreButton href={app.stores.googlePlay} logo={PlayLogo} top="Şimdi edinin" bottom="Google Play" />
+      <StoreButton href={app.stores.appStore} logo={AppleLogo} top={s.download} bottom="App Store" soon={s.soon} />
+      <StoreButton href={app.stores.googlePlay} logo={PlayLogo} top={s.getItOn} bottom="Google Play" soon={s.soon} />
     </div>
   );
 }
@@ -115,7 +142,7 @@ function FiruzeScreen() {
         <div className="text-[9px] tracking-[0.25em] uppercase text-[#F6F1E7]/50">İstanbul</div>
         <div className="mt-3 text-[10px] text-[#D4AF6A]">İkindi vaktine</div>
         <div className="font-display text-[26px] font-bold leading-tight">1 sa 24 dk</div>
-        <svg viewBox="0 0 200 70" className="mx-auto mt-2 w-[85%]" aria-hidden="true">
+        <svg viewBox="0 0 200 70" className="mx-auto mt-1 w-[68%]" aria-hidden="true">
           <path d="M10 65 A90 90 0 0 1 190 65" fill="none" stroke="#F6F1E7" strokeOpacity=".12" strokeWidth="3" />
           <path d="M10 65 A90 90 0 0 1 128 14" fill="none" stroke="#2BB3A8" strokeWidth="3" strokeLinecap="round" />
           <circle cx="128" cy="14" r="5" fill="#D4AF6A" />

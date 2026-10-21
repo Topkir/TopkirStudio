@@ -8,8 +8,8 @@ import AppsPage from './pages/AppsPage';
 import AppDetailPage from './pages/AppDetailPage';
 import LegalPage from './pages/LegalPage';
 import ContactPage from './pages/ContactPage';
-import TechStackPage from './pages/TechStackPage';
-import YayinlarPage from './pages/YayinlarPage';
+import SupportPage from './pages/SupportPage';
+import PressPage from './pages/PressPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -24,11 +24,15 @@ function App() {
                     <Route path="/uygulamalar/:slug" element={<AppDetailPage />} />
                     <Route path="/uygulamalar/:slug/gizlilik" element={<LegalPage kind="privacy" />} />
                     <Route path="/uygulamalar/:slug/kullanim-sartlari" element={<LegalPage kind="terms" />} />
+                    <Route path="/uygulamalar/:slug/destek" element={<SupportPage />} />
+                    <Route path="/en/apps/:slug" element={<AppDetailPage />} />
+                    <Route path="/en/apps/:slug/privacy" element={<LegalPage kind="privacy" />} />
+                    <Route path="/en/apps/:slug/terms" element={<LegalPage kind="terms" />} />
+                    <Route path="/en/apps/:slug/support" element={<SupportPage />} />
+                    <Route path="/basin" element={<PressPage />} />
                     <Route path="/gizlilik" element={<LegalPage docKey="site-privacy" />} />
                     <Route path="/cerez-politikasi" element={<LegalPage docKey="cookies" />} />
-                    <Route path="/techstack" element={<TechStackPage />} />
                     <Route path="/iletisim" element={<ContactPage />} />
-                    <Route path="/yayinlar" element={<YayinlarPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Router>

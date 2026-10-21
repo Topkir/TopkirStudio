@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, FileText, Mail, Shield } from 'lucide-react';
+import { ArrowLeft, FileText, LifeBuoy, Shield } from 'lucide-react';
 import { NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
-import { AppIcon, PhoneMockup, StatusBadge, StoreButtons, Tilt, iconMap } from '@/components/AppVisuals';
-import { CONTACT_EMAIL, appPath, getApp, privacyPath, termsPath } from '@/data/apps';
+import { AppIcon, PhoneMockup, SocialLinks, StatusBadge, StoreButtons, Tilt, iconMap } from '@/components/AppVisuals';
+import { appPath, getApp, localize, privacyPath, supportPath, termsPath } from '@/data/apps';
+import { t, useLang } from '@/i18n';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 const AppDetailPage = () => {
     const { slug } = useParams();
-    const app = getApp(slug);
-    usePageMeta(app && `${app.name} — ${app.subtitle}`, app?.description, app && appPath(app));
+    const lang = useLang();
+    const raw = getApp(slug);
+    const app = raw && (lang === 'tr' || raw.en) ? localize(raw, lang) : null;
+    const s = t(lang);
+    usePageMeta(app && `${app.name} — ${app.subtitle}`, app?.description, app && appPath(app, lang));
     if (!app) return <NotFoundPage />;
 
     return (
@@ -29,7 +33,7 @@ const AppDetailPage = () => {
             <div className="relative">
                 <NavPill />
                 <Link to="/uygulamalar" className="mt-8 flex w-fit items-center gap-2 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/40 hover:text-white/80 transition-colors">
-                    <ArrowLeft className="h-3.5 w-3.5" /> Tüm uygulamalar
+                    <ArrowLeft className="h-3.5 w-3.5" /> {s.allApps}
                 </Link>
 
                 <section className="mt-8 grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
@@ -37,7 +41,7 @@ const AppDetailPage = () => {
                         <div className="flex items-center gap-4">
                             <AppIcon app={app} className="h-20 w-20" />
                             <div>
-                                <StatusBadge app={app} />
+                                <StatusBadge app={app} lang={lang} />
                                 <div className="mt-2 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/40">{app.category} · <span lang="en">{app.platforms.join(' & ')}</span></div>
                             </div>
                         </div>
@@ -45,7 +49,8 @@ const AppDetailPage = () => {
                         <p className="mt-2 text-xl text-white/60">{app.subtitle}</p>
                         <p className="mt-6 text-2xl font-display font-semibold leading-snug" style={{ color: app.accent }}>{app.tagline}</p>
                         <p className="mt-5 max-w-lg text-white/55 leading-relaxed">{app.longDescription}</p>
-                        <div className="mt-8"><StoreButtons app={app} /></div>
+                        <div className="mt-8"><StoreButtons app={app} lang={lang} /></div>
+                        <div className="mt-4"><SocialLinks app={app} lang={lang} /></div>
                         <div className="mt-6 flex flex-wrap gap-2">
                             {app.highlights.map((h) => (
                                 <span key={h} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-white/60">✓ {h}</span>
@@ -64,8 +69,8 @@ const AppDetailPage = () => {
                 </section>
 
                 <section className="mt-28">
-                    <div className="font-mono-ui text-xs tracking-[0.3em] text-white/40 uppercase">// Özellikler</div>
-                    <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold text-white">Neler sunuyor?</h2>
+                    <div className="font-mono-ui text-xs tracking-[0.3em] text-white/40 uppercase">{s.featuresEyebrow}</div>
+                    <h2 className="mt-4 font-display text-3xl md:text-4xl font-bold text-white">{s.featuresTitle}</h2>
                     <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {app.features.map((f, i) => {
                             const Icon = iconMap[f.icon];
@@ -94,25 +99,23 @@ const AppDetailPage = () => {
                 >
                     <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <h2 className="font-display text-3xl font-bold text-white">{app.status === 'yayinda' ? `${app.name} — hemen indir` : `${app.name} çok yakında`}</h2>
-                            <p className="mt-2 text-white/55">{app.status === 'yayinda' ? 'App Store ve Google Play\'de ücretsiz.' : 'App Store ve Google Play\'e geliyor. Mağaza bağlantıları burada yayınlanacak.'}</p>
+                            <h2 className="font-display text-3xl font-bold text-white">{app.status === 'yayinda' ? s.downloadNow(app.name) : s.comingSoonTitle(app.name)}</h2>
+                            <p className="mt-2 text-white/55">{app.status === 'yayinda' ? s.liveBody : s.soonBody}</p>
                         </div>
-                        <StoreButtons app={app} />
+                        <StoreButtons app={app} lang={lang} />
                     </div>
                 </section>
 
                 <section className="mt-12 grid gap-3 sm:grid-cols-3">
                     {[
-                        { to: privacyPath(app), icon: Shield, label: 'Gizlilik Politikası' },
-                        { to: termsPath(app), icon: FileText, label: 'Kullanım Şartları' },
+                        { to: supportPath(app, lang), icon: LifeBuoy, label: s.support },
+                        { to: privacyPath(app, lang), icon: Shield, label: s.privacy },
+                        { to: termsPath(app, lang), icon: FileText, label: s.terms },
                     ].map(({ to, icon: Icon, label }) => (
                         <Link key={to} to={to} className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-sm text-white/70 transition-colors hover:border-white/15 hover:text-white">
                             <Icon className="h-4 w-4" /> {label}
                         </Link>
                     ))}
-                    <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${app.name} destek`)}`} className="flex items-center gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-sm text-white/70 transition-colors hover:border-white/15 hover:text-white">
-                        <Mail className="h-4 w-4" /> Destek
-                    </a>
                 </section>
             </div>
         </PageShell>

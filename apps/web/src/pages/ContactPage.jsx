@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Copy, Check, Instagram, ArrowUpRight } from 'lucide-react';
 import { Eyebrow, NavPill, PageShell, usePageMeta } from '@/components/SiteChrome';
-import { CONTACT_EMAIL, INSTAGRAM_URL, apps } from '@/data/apps';
+import { Link } from 'react-router-dom';
+import { TikTokLogo } from '@/components/AppVisuals';
+import { CONTACT_EMAIL, INSTAGRAM_URL, apps, supportPath } from '@/data/apps';
 
 const ContactPage = () => {
     usePageMeta('İletişim', 'Proje, iş birliği, destek ve geri bildirim için Topkir Studio ile iletişime geçin.', '/iletisim');
@@ -50,14 +52,14 @@ const ContactPage = () => {
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {apps.map((a) => (
-                    <a
+                    <Link
                         key={a.slug}
-                        href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`${a.name} destek`)}`}
+                        to={supportPath(a)}
                         className="group flex items-center justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] px-5 py-4 text-sm text-white/70 transition-colors hover:border-white/15 hover:text-white"
                     >
-                        <span><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: a.accent }} />{a.name} destek</span>
+                        <span><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: a.accent }} />{a.name} destek ve SSS</span>
                         <ArrowUpRight className="h-4 w-4 opacity-40 transition-opacity group-hover:opacity-100" />
-                    </a>
+                    </Link>
                 ))}
             </div>
 
@@ -66,6 +68,11 @@ const ContactPage = () => {
                 <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white/70 hover:border-white/15 hover:text-white transition-colors">
                     <Instagram className="h-4 w-4" /> Instagram
                 </a>
+                {apps.flatMap((a) => a.socials.map((so) => ({ ...so, app: a.name }))).map((so) => (
+                    <a key={so.url} href={so.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-white/70 hover:border-white/15 hover:text-white transition-colors">
+                        <TikTokLogo className="h-4 w-4" /> {so.app} TikTok
+                    </a>
+                ))}
             </div>
         </PageShell>
     );
