@@ -111,7 +111,7 @@ const HomePage = () => {
 
                 <motion.div variants={item} className="md:col-span-2">
                     <a href={tiktok.url} target="_blank" rel="noopener noreferrer" className={card} style={{ '--glow': '#FE2C55' }}>
-                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black text-white shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55]"><TikTokLogo className="h-5 w-5" /></span>
+                        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#000] text-[#fff] shadow-[2px_2px_0_#25F4EE,-2px_-2px_0_#FE2C55]"><TikTokLogo className="h-5 w-5" /></span>
                         <div className="mt-5 font-mono-ui text-[11px] tracking-[0.2em] uppercase text-white/35">TAKİP ET · <span lang="en">TikTok</span></div>
                         <CardTitle>{tiktok.handle}</CardTitle>
                         <p className="mt-2 text-sm text-white/45">Firuze'nin hikâyesi, yeni özellikler ve kısa videolar.</p>
